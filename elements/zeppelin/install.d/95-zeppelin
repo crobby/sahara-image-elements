@@ -1,0 +1,31 @@
+#!/bin/bash
+# This script installs storm and its dependencies
+# More documentation on the README.md file
+
+if [ "${DIB_DEBUG_TRACE:-0}" -gt 0 ]; then
+    set -x
+fi
+set -u
+set -o pipefail
+
+tmp_dir=/tmp/zeppelin
+
+echo "Downloading and installing maven"
+
+MAVEN_DOWNLOAD_URL="http://apache.osuosl.org/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz"
+wget $MAVEN_DOWNLOAD_URL
+maven_file=$(basename "$MAVEN_DOWNLOAD_URL")
+tar -xvf $maven_file -C /opt
+
+echo "Cloning Zeppelin"
+cd /opt
+git clone https://github.com/apache/incubator-zeppelin
+cd incubator-zeppelin
+
+echo "Building Zeppelin"
+/opt/apache-maven-3.1.1/bin/mvn install -DskipTests -Pspark-1.4 -Dhadoop.version=2.5.0-cdh5.3.3 -Phadoop-2.4
+
+echo "Configuring Zeppelin"
+cp conf/zeppelin-env.sh.template conf/zeppelin-env.sh
+chmod +x conf/zeppelin-env.sh
+cp conf/zeppelin-site.xml.template conf/zeppelin-site.xml
