@@ -13,7 +13,7 @@ DEBUG_MODE="false"
 DIB_DEFAULT_MAPR_VERSION="5.0.0"
 
 # The default version for Spark plugin
-DIB_DEFAULT_SPARK_VERSION="1.4.1"
+DIB_DEFAULT_SPARK_VERSION="1.5.0"
 
 # Default list of datasource modules for ubuntu. Workaround for bug #1375645
 export CLOUD_INIT_DATASOURCES=${DIB_CLOUD_INIT_DATASOURCES:-"NoCloud, ConfigDrive, OVF, MAAS, Ec2"}

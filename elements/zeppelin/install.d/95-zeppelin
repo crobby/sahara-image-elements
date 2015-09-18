@@ -23,7 +23,7 @@ git clone https://github.com/apache/incubator-zeppelin
 cd incubator-zeppelin
 
 echo "Building Zeppelin"
-/opt/apache-maven-3.1.1/bin/mvn install -DskipTests -Pspark-1.4 -Dhadoop.version=2.5.0-cdh5.3.3 -Phadoop-2.4
+/opt/apache-maven-3.1.1/bin/mvn install -DskipTests -Pspark-1.5 -Dhadoop.version=2.5.0-cdh5.3.3 -Phadoop-2.4
 
 echo "Configuring Zeppelin"
 cp conf/zeppelin-env.sh.template conf/zeppelin-env.sh
